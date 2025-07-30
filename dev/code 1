@@ -1,0 +1,37 @@
+```python
+class ContentModeration:
+    def __init__(self):
+        self.content_list = []
+
+    def view_content_dashboard(self):
+        # Display content dashboard with posts and comments
+        pass
+
+    def view_content_details(self, content_id):
+        # Display author, creation date, and status of selected content
+        pass
+
+    def approve_content(self, content_id):
+        # Update status of content to 'Approved'
+        pass
+
+    def hide_content(self, content_id, reason):
+        # Update status of content to 'Hidden' and log reason
+        pass
+
+    def delete_content(self, content_id, reason):
+        # Update status of content to 'Deleted' and log reason
+        pass
+
+    def notify_creator(self, content_id, action, reason=None):
+        # Notify original content creator about the action taken and reason (if applicable)
+        pass
+
+# Sample Usage
+admin = ContentModeration()
+admin.view_content_dashboard()
+admin.view_content_details("post_123")
+admin.approve_content("post_123")
+admin.hide_content("comment_456", "Inappropriate language")
+admin.notify_creator("comment_456", "Hidden", "Inappropriate language")
+```  
