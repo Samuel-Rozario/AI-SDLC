@@ -1,0 +1,67 @@
+```python
+class ContentModerationDashboard:
+    def __init__(self, admin):
+        self.admin = admin
+        self.content_list = []
+    
+    def add_content(self, content):
+        self.content_list.append(content)
+    
+    def view_content_details(self):
+        for content in self.content_list:
+            print(f"Author: {content.author}, Creation Date: {content.creation_date}, Status: {content.status}")
+    
+    def review_content(self, content, action, reason=None):
+        if action == 'Approve':
+            content.approve()
+        elif action == 'Hide':
+            content.hide(reason)
+        elif action == 'Delete':
+            content.delete(reason)
+    
+    def notify_content_creator(self, content, action, reason=None):
+        if action in ['Hide', 'Delete']:
+            content.creator.notify(action, reason)
+
+class UserGeneratedContent:
+    def __init__(self, author, creation_date):
+        self.author = author
+        self.creation_date = creation_date
+        self.status = 'Pending'
+    
+    def approve(self):
+        self.status = 'Approved'
+    
+    def hide(self, reason):
+        self.status = 'Hidden'
+    
+    def delete(self, reason):
+        self.status = 'Deleted'
+
+class User:
+    def __init__(self, name):
+        self.name = name
+    
+    def notify(self, action, reason=None):
+        if reason:
+            print(f"Your content has been {action} due to: {reason}")
+        else:
+            print(f"Your content has been {action}")
+
+# Example usage
+admin = User("Admin")
+content1 = UserGeneratedContent("User1", "2022-11-01")
+content2 = UserGeneratedContent("User2", "2022-11-02")
+
+dashboard = ContentModerationDashboard(admin)
+dashboard.add_content(content1)
+dashboard.add_content(content2)
+
+dashboard.view_content_details()
+
+dashboard.review_content(content1, 'Approve')
+dashboard.review_content(content2, 'Hide', 'Inappropriate content')
+
+dashboard.notify_content_creator(content1, 'Approve')
+dashboard.notify_content_creator(content2, 'Hide', 'Inappropriate content')
+```  
