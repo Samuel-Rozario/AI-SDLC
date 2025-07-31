@@ -1,0 +1,33 @@
+```python
+class User:
+    def __init__(self, username, email, registration_date, status):
+        self.username = username
+        self.email = email
+        self.registration_date = registration_date
+        self.status = status
+
+class Administrator:
+    def view_all_user_accounts(self):
+        # Code to display paginated list of all user accounts
+
+    def suspend_user_account(self, user):
+        user.status = 'Suspended'
+        # Code to prevent user from logging in and mark content as suspended
+
+    def delete_user_account_permanently(self, user):
+        # Code to permanently delete user account and associated data
+
+# Test the functionality
+admin = Administrator()
+
+# View All User Accounts
+admin.view_all_user_accounts()
+
+# Suspend User Account
+user_to_suspend = User("JohnDoe", "john.doe@example.com", "2022-01-01", "Active")
+admin.suspend_user_account(user_to_suspend)
+
+# Delete User Account Permanently
+user_to_delete = User("JaneSmith", "jane.smith@example.com", "2022-02-01", "Active")
+admin.delete_user_account_permanently(user_to_delete)
+``` 
