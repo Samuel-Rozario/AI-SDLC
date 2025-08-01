@@ -1,0 +1,41 @@
+```python
+class User:
+    def __init__(self, logged_in):
+        self.logged_in = logged_in
+
+class Post:
+    def __init__(self, text_content, media_file):
+        self.text_content = text_content
+        self.media_file = media_file
+
+class Platform:
+    def create_post(self, user, post):
+        if user.logged_in:
+            if post.text_content or post.media_file:
+                if len(post.text_content) <= 500:
+                    if not post.media_file or (post.media_file and len(post.media_file) <= 10):
+                        return "Post created successfully"
+                    else:
+                        return "Error: Media file size exceeds the limit"
+                else:
+                    return "Error: Text content exceeds the character limit"
+            else:
+                return "Error: Cannot create empty post"
+        else:
+            return "Error: User not logged in"
+
+
+# Test the scenarios
+user = User(logged_in=True)
+post_with_content = Post("This is a sample post content within the character limit", "sample_image.jpg")
+post_without_content = Post("", "")
+
+platform = Platform()
+
+print(platform.create_post(user, post_with_content))  # Output should be "Post created successfully"
+print(platform.create_post(user, post_without_content))  # Output should be "Error: Cannot create empty post"
+post_exceeding_limit = Post("A" * 501, "large_image.jpg")
+print(platform.create_post(user, post_exceeding_limit))  # Output should be "Error: Text content exceeds the character limit"
+post_large_media = Post("Sample text content", "large_video.mp4")
+print(platform.create_post(user, post_large_media))  # Output should be "Error: Media file size exceeds the limit"
+```
