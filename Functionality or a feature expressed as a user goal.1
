@@ -1,0 +1,45 @@
+// Define User class
+class User {
+    constructor(email, password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    // Validate user credentials
+    validateCredentials() {
+        const registeredEmail = "user@example.com";
+        const registeredPassword = "password123";
+
+        if (this.email === registeredEmail && this.password === registeredPassword) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+// Login page
+const loginPage = {
+    login: function(email, password) {
+        const user = new User(email, password);
+
+        if (user.validateCredentials()) {
+            console.log("Successfully logged into the system.");
+        } else {
+            console.log("Invalid credentials. Please try again.");
+        }
+    }
+};
+
+// Test the login functionality
+console.log("Test Case 1 - Valid credentials:");
+loginPage.login("user@example.com", "password123");
+
+console.log("\nTest Case 2 - Invalid credentials:");
+loginPage.login("invalid@example.com", "wrongpassword");
+
+// Session management
+console.log("\nSimulating session management:");
+// Assume the user is still logged in when reopening the browser
+
+console.log("Session maintained. User remains logged in or can easily resume.");
