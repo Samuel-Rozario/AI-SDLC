@@ -1,0 +1,23 @@
+// Automation code to verify the system rejects login attempts if the email format is invalid
+
+// Preconditions
+// Code to navigate to the login page
+
+// Enter an invalid email format into the 'Email' field
+String invalidEmail = "invalid-email"; // Invalid email format
+String password = "Password123!"; // Valid password
+driver.findElement(By.id("email")).sendKeys(invalidEmail);
+
+// Enter any password into the 'Password' field
+driver.findElement(By.id("password")).sendKeys(password);
+
+// Click the 'Login' button
+driver.findElement(By.id("loginButton")).click();
+
+// Expected_result
+// Verify if the 'Please enter a valid email address' error message is displayed
+String errorMessage = driver.findElement(By.id("errorMessage")).getText();
+Assert.assertEquals(errorMessage, "Please enter a valid email address");
+
+// Verify if the login is prevented
+// Add code to check if the login is prevented, for example, by checking if the user is not navigated to the home page or any other logged-in page.
