@@ -35,6 +35,7 @@ class User {
   }
 }
 
+
 // Usage
 const currentUser = new User("Alice");
 currentUser.login();
